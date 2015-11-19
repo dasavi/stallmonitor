@@ -23,8 +23,8 @@ app.get('/stallmonitor', function(request, response) {
 	response.sendfile('stallmonitor/index.html');
 });
 
-app.post('/stall', function(req, res) {
-	var requestBody = req.body;
+app.post('/stall', function(request, response) {
+	var requestBody = request.body;
 	console.log("Request Body: " + JSON.stringify(requestBody) );
 
 	var floor = requestBody.floor,
@@ -32,12 +32,18 @@ app.post('/stall', function(req, res) {
 		stallName = requestBody.stallName,
 		occupied = requestBody.occupied;
 	
-	stallController.updateStallStatus(floor, bathroom, stallName, occupied);
+	stallController.updateStallStatus(floor, bathroom, stallName, occupied, response);
 });
 
 app.get('/stall', function(request, response) {
+	var requestBody = request.query;
 	var floor = requestBody.floor,
 		bathroom = requestBody.bathroom,
 		stallName = requestBody.stallName;
-	stallController.getStallStatus(floor, bathroom, stallName);
+
+	var callback = function(val){
+		response.send(val);
+	};
+
+	stallController.getStallStatus(floor, bathroom, stallName, callback);
 });
