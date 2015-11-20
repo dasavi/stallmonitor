@@ -42,7 +42,7 @@ app.get('/stall', function(request, response) {
 		stallName = requestBody.stallName;
 
 	var callback = function(val){
-		response.send(val);
+		response.json({ "occupied": val });;
 	};
 
 	stallController.getStallStatus(floor, bathroom, stallName, callback);
