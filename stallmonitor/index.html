@@ -51,10 +51,13 @@
     <div class="floor-container" ng-repeat='(floorName, floor) in floors'>
       <h2><strong>Floor {{floorName}}</strong></h2>
       <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
-      <h3>{{bathroomName}}</h3>
-        <div ng-repeat='(stallName, stall) in bathroom'>      
-          <a ng-show="{{!stall.occupied}}" href="#" class="btn btn-primary btn-raised score-container"><strong>{{stallName}}</strong></a>
-          <a ng-show="{{stall.occupied}}" href="#" class="btn btn-danger btn-raised score-container"><strong>{{stallName}}</strong></a>
+        <h3>{{bathroomName}}</h3>
+        <div ng-repeat='(stallName, stall) in bathroom'>
+          <a href="#"
+             ng-class="{'btn-primary': !stall.occupied, 'btn-danger': stall.occupied}"
+             class="btn btn-raised score-container">
+             <strong>{{stallName}}</strong>
+          </a>
         </div>
       </div>
     </div>
