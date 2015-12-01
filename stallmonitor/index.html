@@ -68,17 +68,12 @@
       myApp.controller('MyController', ['$scope', '$firebaseObject',
         function($scope, $firebase) {
             var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/");
-            var scope = $scope;
-            var sync = $firebase(databaseRef);
+            var syncObj = $firebase(databaseRef);
+            $scope.floors = syncObj;
 
-            $scope.floors = sync;
-            sync.$bindTo($scope, "floors");
-
-            //debugging 
+            //Log status
             databaseRef.on("value", function(snapshot) {
-              console.log("floors:");
-              console.log($scope.floors);
-              console.log("snapshot value:");
+              console.log("Data updated:");
               console.log(snapshot.val());
             });
         }
