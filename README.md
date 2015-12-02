@@ -4,15 +4,15 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
  
 ## Getting Started
 
-### Clone and install
+#### Clone and install
 * `git clone "https://github.com/dasavi/stallmonitor.git"`
 * `npm install`
 
-### Start Node server
+#### Start Node server
 `node index.js`
 
-### Start grunt watcher for scss files
+#### Start grunt watcher for scss files
 `grunt watch`
 
-### Goto:
+#### Goto:
 `http://localhost:5000`
