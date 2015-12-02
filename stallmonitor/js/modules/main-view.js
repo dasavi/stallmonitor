@@ -1,17 +1,17 @@
 'use strict';
-angular.module('mainView', ['firebase']).
-    controller('mainViewCtrl', ['$scope', '$firebaseObject',
-        function($scope, $firebase) {
+var mainView = angular.module('mainView', ['firebase']);
 
-            var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/"),
-                syncObj = $firebase(databaseRef);
+mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject',
+    function($scope, $firebase) {
+        var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/"),
+            syncObj = $firebase(databaseRef);
 
-            $scope.floors = syncObj;
+        $scope.floors = syncObj;
 
-            //Log status
-            databaseRef.on("value", function(snapshot) {
-                console.log("Data updated:");
-                console.log(snapshot.val());
-            });
-        }
-    ]);
+        //Log status
+        databaseRef.on("value", function(snapshot) {
+            console.log("Data updated:");
+            console.log(snapshot.val());
+        });
+    }
+]);
