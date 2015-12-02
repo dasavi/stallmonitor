@@ -1,0 +1,114 @@
+/*
+  Master.scss - imports all of our sass partials and gets compliled into /css/master.css
+*/
+/* LAYOUT
+================================== */
+/* COLORS
+================================== */
+/* TYPE
+================================== */
+/* Row */
+/* Column */
+/* Breakpoint */
+.floor-container {
+  margin-left: 5%; }
+
+.bathroom-container {
+  min-width: 150;
+  max-width: 50%;
+  display: inline-block;
+  margin-right: 5%;
+  text-align: center; }
+
+.btn {
+  margin-bottom: 5px; }
+
+.large-font {
+  font-size: 27px; }
+
+/* Standards and resets */
+html, body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  height: 100%;
+  margin: 0;
+  min-height: 100%;
+  padding: 0; }
+
+body {
+  background-image: url(../assets/eh-bg.jpg);
+  color: #3d3d3d; }
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+h1 {
+  color: #e1e1e1;
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  line-height: 1.1;
+  margin-top: 20px;
+  margin-bottom: 10px; }
+
+p {
+  line-height: 1.5em; }
+
+.container {
+  width: 100%;
+  max-width: 66rem;
+  margin-left: auto;
+  margin-right: auto; }
+  .container:before, .container:after {
+    content: '';
+    display: table; }
+  .container:after {
+    clear: both; }
+
+.container-inner {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem; }
+  .container-inner:before, .container-inner:after {
+    content: '';
+    display: table; }
+  .container-inner:after {
+    clear: both; }
+
+.grid-cell {
+  float: left;
+  width: 100%;
+  padding-top: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem; }
+  @media only screen and (max-width: 37.5em) {
+    .grid-cell {
+      float: left;
+      width: 100%;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem; } }
+  @media only screen and (min-width: 50em) {
+    .grid-cell {
+      float: left;
+      width: 50%;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem; } }
+  @media only screen and (min-width: 64em) {
+    .grid-cell {
+      float: left;
+      width: 33.33333%;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem; } }
+  @media only screen and (min-width: 70em) {
+    .grid-cell {
+      float: left;
+      width: 25%;
+      padding-top: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem; } }
+
+/*# sourceMappingURL=master.css.map */
