@@ -20,6 +20,10 @@ module.exports = function(grunt) {
             css: {
                 files: '**/*.scss',
                 tasks: ['sass']
+            },
+            js: {
+                files: 'stallmonitor/js/modules/**/*.js',
+                tasks: ['eslint']
             }
         }
     });
