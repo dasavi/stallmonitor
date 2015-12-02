@@ -12,8 +12,6 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
 `node index.js`
 
 #### Run ESLint
-(ESLint can be configured in .eslintrc.json)
-
 `grunt lint`
 
 #### Start watcher for scss files
