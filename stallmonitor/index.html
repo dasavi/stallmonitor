@@ -37,7 +37,7 @@
   <link href="css/master.css" rel="stylesheet">
 </head>
 
-<body unresolved ng-app="stallMonitor" ng-controller="StallController">
+<body unresolved ng-app="mainView" ng-controller="mainViewCtrl">
 
     <div class="navbar navbar-default">
       <div class="navbar-header">
@@ -59,32 +59,17 @@
       </div>
     </div>
 
-    <script>
-      var stallMonitor = angular.module("stallMonitor", ["firebase"]);
-
-      stallMonitor.controller('StallController', ['$scope', '$firebaseObject',
-        function($scope, $firebase) {
-            var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/");
-            var syncObj = $firebase(databaseRef);
-            $scope.floors = syncObj;
-
-            //Log status
-            databaseRef.on("value", function(snapshot) {
-              console.log("Data updated:");
-              console.log(snapshot.val());
-            });
-        }
-      ]);
-    </script>
-
     <!-- Paper Design -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="js/ripples.min.js"></script>
-    <script src="js/material.min.js"></script>
+    <script src="js/lib/ripples.min.js"></script>
+    <script src="js/lib/material.min.js"></script>
     <script>
         $(document).ready(function() {
             $.material.init();
         });
     </script>
+
+    <!-- Main App -->
+    <script src="js/modules/main-view.js"></script>
 
 </body></html>
