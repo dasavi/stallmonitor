@@ -39,37 +39,38 @@
 
 <body unresolved ng-app="mainView" ng-controller="mainViewCtrl">
 
-    <div class="navbar navbar-default">
-      <div class="navbar-header">
-        <a class="navbar-brand large-font" href="#">Stall Monitor</a>
+  <div class="navbar navbar-default">
+    <div class="navbar-header">
+      <a class="navbar-brand large-font" href="#">Stall Monitor</a>
+    </div>
+  </div>
+
+  <div class="floor-container" ng-repeat='(floorName, floor) in floors'>
+    <h2><strong>Floor {{floorName}}</strong></h2>
+    <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
+      <h3>{{bathroomName}}</h3>
+      <div ng-repeat='(stallName, stall) in bathroom'>
+        <a href="#"
+           ng-class="{'btn-primary': !stall.occupied, 'btn-danger': stall.occupied}"
+           class="btn btn-raised score-container">
+           <strong>{{stallName}}</strong>
+        </a>
       </div>
     </div>
+  </div>
 
-    <div class="floor-container" ng-repeat='(floorName, floor) in floors'>
-      <h2><strong>Floor {{floorName}}</strong></h2>
-      <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
-        <h3>{{bathroomName}}</h3>
-        <div ng-repeat='(stallName, stall) in bathroom'>
-          <a href="#"
-             ng-class="{'btn-primary': !stall.occupied, 'btn-danger': stall.occupied}"
-             class="btn btn-raised score-container">
-             <strong>{{stallName}}</strong>
-          </a>
-        </div>
-      </div>
-    </div>
+  <!-- Paper Design -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <script src="js/lib/ripples.min.js"></script>
+  <script src="js/lib/material.min.js"></script>
+  <script>
+      $(document).ready(function() {
+          $.material.init();
+      });
+  </script>
 
-    <!-- Paper Design -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    <script src="js/lib/ripples.min.js"></script>
-    <script src="js/lib/material.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $.material.init();
-        });
-    </script>
+  <!-- Main App -->
+  <script src="js/modules/main-view.js"></script>
 
-    <!-- Main App -->
-    <script src="js/modules/main-view.js"></script>
-
-</body></html>
+</body>
+</html>
