@@ -40,12 +40,8 @@
   right: percentage($width);
 }
 
-// TODO: Add Size as a parameter ??
-@mixin default-font-family($size) {
+@mixin default-font-family() {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  @if $size > 0 {
-    font-size: $size;
-  }
 }
 
 @mixin arial-narrow() {
