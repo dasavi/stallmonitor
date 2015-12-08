@@ -1,5 +1,6 @@
 /*----Require Config----*/
 var express = require('express');
+var _ = require('lodash');
 var app = module.exports = express();
 var bodyParser = require('body-parser');
 var stallController = require('./custom_modules/stallController');
@@ -32,7 +33,13 @@ app.post('/stall', function(request, response) {
 		stallName = requestBody.stallName,
 		occupied = requestBody.occupied;
 	
-	stallController.updateStallStatus(floor, bathroom, stallName, occupied, response);
+	if(!_.isString(floor) || !_.isString(bathroom) || 
+		!_.isString(stallName) || !_.isBoolean(occupied)) {
+		response.status(400);
+		response.send("Bad data, yo");
+	} else {
+		stallController.updateStallStatus(floor, bathroom, stallName, occupied, response);
+	}
 });
 
 app.get('/stall', function(request, response) {
@@ -45,5 +52,10 @@ app.get('/stall', function(request, response) {
 		response.json({ "occupied": val });;
 	};
 
-	stallController.getStallStatus(floor, bathroom, stallName, callback);
+	if(!_.isString(floor) || !_.isString(bathroom) || !_.isString(stallName)) {
+		response.status(400);
+		response.send("Bad data, yo");
+	} else {
+		stallController.getStallStatus(floor, bathroom, stallName, callback);	
+	}
 });

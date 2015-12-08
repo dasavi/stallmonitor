@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "express": "~4.9.x",
-    "firebase": "^2.0.4"
+    "firebase": "^2.0.4",
+    "lodash": "^3.10.1"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
