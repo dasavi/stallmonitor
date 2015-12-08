@@ -1,4 +1,5 @@
-var database = require('./database')
+var database = require('./database');
+var timers = require('./timer');
 
 exports.updateStallStatus = function(floor, bathroom, stallName, occupied, response){
 	var callback = function(error){
@@ -10,7 +11,13 @@ exports.updateStallStatus = function(floor, bathroom, stallName, occupied, respo
 	}
 
 	var stallReference = database.getStallReference(floor, bathroom, stallName);
-	stallReference.update({"occupied": occupied}, callback);
+	stallReference.update({"occupied": occupied, "active": true}, callback);
+
+	// Set a timer to mark the stall inactive if it isn't updated in a long time
+	timers.setTimer(floor, bathroom, stallName, function(){
+		console.log("Stall status expired");
+		stallReference.update({"active": false});
+	});
 };
 
 exports.getStallStatus = function(floor, bathroom, stallName, callback){
@@ -21,3 +28,4 @@ exports.getStallStatus = function(floor, bathroom, stallName, callback){
   		callback(isOccupied);
 	});
 };
+
