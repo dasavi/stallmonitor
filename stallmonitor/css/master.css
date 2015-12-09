@@ -13,12 +13,29 @@
 .floor-container {
   margin-left: 5%; }
 
+.notification-container {}
+
+.notification-button{
+  width: 50px;
+  padding: 0;
+}
+.notification-icon {
+  height: 30px; }
+
+.notification-input {
+  text-align: center; }
+
 .bathroom-container {
   min-width: 150;
   max-width: 50%;
   display: inline-block;
+  vertical-align: top;
   margin-right: 5%;
   text-align: center; }
+
+.space-container {
+  width: 120px;
+}
 
 .btn {
   margin-bottom: 5px; }
@@ -109,5 +126,7 @@ p {
       padding-top: 0.5rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem; } }
+
+
 
 /*# sourceMappingURL=master.css.map */
