@@ -2,7 +2,7 @@
 *  This module keeps track of timers for each stall
 */
 var timers ={};
-var RESET_INTERVAL = 10000;
+var RESET_INTERVAL = 60000;
 
 var getKey = function(floor, bathroom, stallName){
 	return floor + bathroom + stallName;
