@@ -1,9 +1,12 @@
 /*----Require Config----*/
+require('dotenv').load();
 var express = require('express');
 var _ = require('lodash');
 var app = module.exports = express();
 var bodyParser = require('body-parser');
 var stallController = require('./custom_modules/stallController');
+var notifyController = require('./custom_modules/notifyController');
+
 
 /*----Configure Express------*/
 app.set('port', (process.env.PORT || 5000));
@@ -57,5 +60,21 @@ app.get('/stall', function(request, response) {
 		response.send("Bad data, yo");
 	} else {
 		stallController.getStallStatus(floor, bathroom, stallName, callback);	
+	}
+});
+
+app.post('/notify', function(request, response) {
+	var requestBody = request.body;
+	console.log("Request Body: " + JSON.stringify(requestBody) );
+
+	var floor = requestBody.floor,
+		bathroom = requestBody.bathroom
+		email = requestBody.email;
+	
+	if(!_.isString(floor) || !_.isString(bathroom) || !_.isString(email)) {
+		response.status(400);
+		response.send("Bad data, yo");
+	} else {
+		notifyController.register(floor, bathroom, email, response);
 	}
 });

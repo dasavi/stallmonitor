@@ -49,7 +49,7 @@
     <h2><strong>Floor {{floorName}}</strong></h2>
     <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
       <h3>{{bathroomName}}</h3>
-      <div ng-repeat='(stallName, stall) in bathroom'>
+      <div ng-repeat='(stallName, stall) in bathroom.spaces'>
         <a href="#"
            ng-class="{'btn-primary': !stall.occupied && stall.active, 'btn-danger': stall.occupied && stall.active}"
            class="btn btn-raised score-container">
