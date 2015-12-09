@@ -1,5 +1,6 @@
 var database = require('./database');
 var timers = require('./timer');
+var notify = require('./notifyController');
 
 exports.updateStallStatus = function(floor, bathroom, stallName, occupied, response){
 	var callback = function(error){
@@ -18,6 +19,11 @@ exports.updateStallStatus = function(floor, bathroom, stallName, occupied, respo
 		console.log("Stall status expired");
 		stallReference.update({"active": false});
 	});
+
+	//Notify people if a stall is being marked as free
+	if(!occupied) {
+		notify.notifyListeners(floor, bathroom);	
+	}	
 };
 
 exports.getStallStatus = function(floor, bathroom, stallName, callback){

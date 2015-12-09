@@ -1,11 +1,10 @@
 'use strict';
 var mainView = angular.module('mainView', ['firebase']);
-var prodUrl = "http://slalomstalls.herokuapp.com";
-var baseUrl = prodUrl;
-var notifyUrl = baseUrl + "/notify";
+var notifyUrl = "/notify";
 
 mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http',
     function($scope, $firebase, $http) {
+        
         var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/"),
             syncObj = $firebase(databaseRef);
 
@@ -28,8 +27,7 @@ mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http',
         $scope.notifySubmit = function(floorName, bathroomName){
             var email = $scope.notify.email;
             $scope.notify.email = "";
-
-            //TODO: Send notify request to server  
+ 
             var data = {
                 "floor": floorName,
                 "bathroom": bathroomName,

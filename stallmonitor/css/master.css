@@ -19,6 +19,10 @@
   width: 50px;
   padding: 0;
 }
+
+.notification-button:hover{
+  background-color: #E43D3D;
+}
 .notification-icon {
   height: 30px; }
 
