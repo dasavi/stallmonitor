@@ -37,7 +37,7 @@ app.post('/stall', function(request, response) {
 		occupied = requestBody.occupied;
 	
 	if(!_.isString(floor) || !_.isString(bathroom) || 
-		!_.isString(stallName) || !_.isBoolean(occupied)) {
+		!_.isString(stallName) /*|| !_.isBoolean(occupied)*/) {
 		response.status(400);
 		response.send("Bad data, yo");
 	} else {
