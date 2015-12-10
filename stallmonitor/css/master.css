@@ -13,7 +13,9 @@
 .floor-container {
   margin-left: 5%; }
 
-.notification-container {}
+.notification-container {
+  max-height: 150px;    
+}
 
 .notification-button{
   width: 50px;
@@ -23,8 +25,22 @@
 .notification-button:hover{
   background-color: #E43D3D;
 }
+
 .notification-icon {
-  height: 30px; }
+  height: 30px; 
+}
+
+.notification-form-container {
+  background-color: #EEEEEE;  
+}
+.notification-form {
+  width: 60%;
+  margin-left: 20%;     
+  margin-top: 10px;
+}
+.notification-input-label {
+  width: 100%;
+}
 
 .notification-input {
   text-align: center; }

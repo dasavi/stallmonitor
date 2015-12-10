@@ -1,5 +1,9 @@
 'use strict';
-var mainView = angular.module('mainView', ['firebase', 'ngMaterial']);
+var mainView = angular.module('mainView', ['firebase', 'ngMaterial']).config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('blue')
+    .accentPalette('orange');
+});
 var notifyUrl = "/notify";
 
 mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 
