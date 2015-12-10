@@ -40,6 +40,7 @@ app.post('/stall', function(request, response) {
 		!_.isString(stallName) /*|| !_.isBoolean(occupied)*/) {
 		response.status(400);
 		response.send("Bad data, yo");
+		console.log("Missing parameter");
 	} else {
 		stallController.updateStallStatus(floor, bathroom, stallName, occupied, response);
 	}
