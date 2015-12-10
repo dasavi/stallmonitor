@@ -1,5 +1,7 @@
 var database = require('./database');
 var nodemailer = require('nodemailer');
+var http = require('http');
+var post = require('http-post');
 
 var serverEmail = process.env.EMAIL_ADDRESS;
 var serverEmailPwd = process.env.EMAIL_PASSWORD; 
@@ -12,7 +14,7 @@ var transporter = nodemailer.createTransport({
 });
 
 var sendEmailNotification = function(emailObj){
-	console.log("Sending notification: " + emailObj.address);
+	console.log("Sending email notification: " + emailObj.address);
 	// setup e-mail data with unicode symbols
 	var mailOptions = {
 	    from: 'Occupy Stall St <'+serverEmail+'>', // sender address
@@ -27,6 +29,14 @@ var sendEmailNotification = function(emailObj){
 	        return console.log(error);
 	    }
 	    console.log('Message sent: ' + info.response);
+	});
+};
+
+var sendTextMessage = function(phoneObj){
+	console.log("Sending SMS notification: " + phoneObj.number);
+	post('http://textbelt.com/text', {
+		number: phoneObj.number,
+		message: phoneObj.text
 	});
 };
 
@@ -55,12 +65,21 @@ exports.clearNotificationQueue = function(floor, bathroom){
 exports.notifyListeners = function(floor, bathroom){
 	database.getNotifyReference(floor, bathroom).once("value", function(snapshot){
 		snapshot.forEach(function(child){
-			var emailObj = {
-				address: child.val(),
-				subject: "Bathroom available!",
-				text: floor + " " + bathroom + ": Your throne awaits" 
-			};
-			sendEmailNotification(emailObj);
+			var text = floor + " " + bathroom + ": Your throne awaits";
+			if(isNaN(child.val())){
+				var emailObj = {
+					address: child.val(),
+					subject: "Bathroom available!",
+					text: text
+				};
+				sendEmailNotification(emailObj);
+			} else {
+				var phoneObj = {
+					number: child.val(),
+					text: text
+				};
+				sendTextMessage(phoneObj);
+			}
 		});
 		//Clear queue. Notifications are one time only.
 		database.getNotifyReference(floor,bathroom).remove();
