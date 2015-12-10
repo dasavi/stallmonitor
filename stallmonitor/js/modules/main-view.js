@@ -1,8 +1,8 @@
 'use strict';
-var mainView = angular.module('mainView', ['firebase']);
+var mainView = angular.module('mainView', ['firebase', 'ngMaterial']);
 var notifyUrl = "/notify";
 
-mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http',
+mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 
     function($scope, $firebase, $http) {
         
         var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/"),
