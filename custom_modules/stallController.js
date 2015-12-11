@@ -9,7 +9,7 @@ exports.updateStallStatus = function(floor, bathroom, stallName, occupied, respo
 		} else {
 			response.send("done");
 		}
-	}
+	};
 
 	var stallReference = database.getStallReference(floor, bathroom, stallName);
 	stallReference.update({"occupied": occupied, "active": true}, callback);
@@ -28,10 +28,23 @@ exports.updateStallStatus = function(floor, bathroom, stallName, occupied, respo
 
 exports.getStallStatus = function(floor, bathroom, stallName, callback){
 	console.log("Getting Stall: ", floor, bathroom, stallName);
+
 	var stallReference = database.getStallReference(floor, bathroom, stallName);
+
 	stallReference.child("occupied").once("value", function(snapshot) {
   		var isOccupied = snapshot.val();
+
   		callback(isOccupied);
+	});
+};
+
+exports.getAllStalls = function(callback){
+	var stallReference = database.getAllStalls();
+
+	stallReference.once("value", function(snapshot) {
+  		var allStatuses = snapshot.val();
+
+  		callback(allStatuses);
 	});
 };
 

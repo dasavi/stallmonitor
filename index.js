@@ -19,12 +19,14 @@ app.listen(app.get('port'), function() {
 });
 
 /*--------Routes----------*/
-app.get('/', function(request, response) {
-	response.send('Hello World!');
-});
-
 app.get('/stallmonitor', function(request, response) {
 	response.sendfile('stallmonitor/index.html');
+});
+
+app.get('/stalls', function(request, response) {
+	stallController.getAllStalls(function (statuses) {
+		response.json({statuses: statuses});
+	})
 });
 
 app.post('/stall', function(request, response) {
@@ -52,7 +54,7 @@ app.get('/stall', function(request, response) {
 		stallName = requestBody.stallName;
 
 	var callback = function(val){
-		response.json({ "occupied": val });;
+		response.json({ "occupied": val });
 	};
 
 	if(!_.isString(floor) || !_.isString(bathroom) || !_.isString(stallName)) {
@@ -68,7 +70,7 @@ app.post('/notify', function(request, response) {
 	console.log("Request Body: " + JSON.stringify(requestBody) );
 
 	var floor = requestBody.floor,
-		bathroom = requestBody.bathroom
+		bathroom = requestBody.bathroom,
 		email = requestBody.email;
 	
 	if(!_.isString(floor) || !_.isString(bathroom) || !_.isString(email)) {
