@@ -8,3 +8,7 @@ exports.getStallReference = function(floor, bathroom, stallName){
 exports.getNotifyReference = function(floor, bathroom){
 	return myFirebaseRef.child(floor).child(bathroom).child("notify");	
 };
+
+exports.getAllStalls = function() {
+	return myFirebaseRef;
+};
