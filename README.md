@@ -8,6 +8,16 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
 * `git clone "https://github.com/dasavi/stallmonitor.git"`
 * `npm install`
 
+##### Set Environment Variables
+* Create a file called `.env` in the project directory
+* Add the following to it:
+
+`EMAIL_ADDRESS=[Email address that server will use to send notifications]`
+
+`EMAIL_PASSWORD=[Password for server email address]`
+
+`STATUS_EXPIRE_TIME=[Milliseconds to wait since the last update before marking the stall status as unknown]`
+
 ##### Start Node server
 `node index.js`
 
