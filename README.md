@@ -20,8 +20,9 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
 
 `DB_URL=[URL of Firebase that the application will use]`
 
-##### Edit config.js
-* `DB_URL` should be the same value as the `.env` file
+##### Create config.js in `stallmonitor/js/modules` folder
+
+`angular.module('configuration', []).constant('DB_URL','[FIREBASE URL HERE]');`
 
 ##### Start Node server
 `node index.js`
