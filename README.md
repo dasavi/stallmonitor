@@ -18,6 +18,11 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
 
 `STATUS_EXPIRE_TIME=[Milliseconds to wait since the last update before marking the stall status as unknown]`
 
+`DB_URL=[URL of Firebase that the application will use]`
+
+##### Edit config.js
+* `DB_URL` should be the same value as the `.env` file
+
 ##### Start Node server
 `node index.js`
 

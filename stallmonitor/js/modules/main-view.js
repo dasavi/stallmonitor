@@ -1,15 +1,15 @@
 'use strict';
-var mainView = angular.module('mainView', ['firebase', 'ngMaterial']).config(function($mdThemingProvider) {
+var mainView = angular.module('mainView', ['firebase', 'ngMaterial','configuration']).config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('blue')
     .accentPalette('orange');
 });
-var notifyUrl = "/notify";
+var notifyEndpoint = "/notify";
 
-mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 
-    function($scope, $firebase, $http) {
+mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 'DB_URL',
+    function($scope, $firebase, $http, DB_URL) {
         
-        var databaseRef = new Firebase("https://stallmonitor.firebaseio.com/"),
+        var databaseRef = new Firebase(DB_URL),
             syncObj = $firebase(databaseRef);
 
         $scope.floors = syncObj;
@@ -38,7 +38,7 @@ mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http',
                 "email": email
             };
 
-            $http.post(notifyUrl, data);  
+            $http.post(notifyEndpoint, data);  
         };
     }
 ]);

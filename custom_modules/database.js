@@ -1,5 +1,8 @@
 var Firebase = require("firebase");
-var myFirebaseRef = new Firebase("https://stallmonitor.firebaseio.com/");
+
+var databaseUrl = process.env.DB_URL;
+var myFirebaseRef = new Firebase(databaseUrl);
+console.log("Using database: " + databaseUrl);
 
 exports.getStallReference = function(floor, bathroom, stallName){
 	return myFirebaseRef.child(floor).child(bathroom).child("spaces").child(stallName);	
