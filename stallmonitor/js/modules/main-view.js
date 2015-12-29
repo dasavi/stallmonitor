@@ -19,7 +19,8 @@ mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 'DB_U
             console.log("Data updated:");
             console.log(snapshot.val());
         });
-
+        
+        $scope.showCredits = false;
         $scope.showInput = false;
         $scope.notify = {email: null};
 

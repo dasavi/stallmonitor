@@ -86,11 +86,21 @@
            class="btn btn-raised space-container">
            <strong ng-if="stall.active">{{stallName}}</strong>
            <strong ng-if="!stall.active">?</strong>
+           <img ng-if="stall.handicapped" src="images/handicapped-icon.png" class="handicapped-icon">
         </a>
       </div>
     </div>
   </div>
 
+
+<div class="credits-container" ng-mouseover="showCredits = true"
+ng-mouseleave="showCredits = false">
+  <a>Copyright</a>
+  <div ng-show="showCredits">
+    <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>             is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>
+    </div>
+  </div>
+</div>
   <!-- Paper Design -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="js/lib/ripples.min.js"></script>
