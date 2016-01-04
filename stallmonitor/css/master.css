@@ -11,51 +11,36 @@
 /* Column */
 /* Breakpoint */
 .floor-container {
-  margin-left: 5%; }
-
-.notification-container {
-  max-height: 150px;    
-}
-
-.notification-button{
-  width: 50px;
-  padding: 0;
-}
-
-.notification-button:hover{
-  background-color: #E43D3D;
-}
-
-.notification-icon {
-  height: 30px; 
-}
-
-.notification-form-container {
-  background-color: #EEEEEE;  
-}
-.notification-form {
-  width: 60%;
-  margin-left: 20%;     
-  margin-top: 10px;
-}
-.notification-input-label {
-  width: 100%;
-}
-
-.notification-input {
-  text-align: center; }
+  margin: 0 5%; }
+  .floor-container h2 {
+    float: left;
+    margin-right: 10px; }
+    .floor-container h2 .bathroom-name {
+      font-size: 0.65em;
+      font-weight: 400; }
+    @media only screen and (max-width: 37.5em) {
+      .floor-container h2 {
+        font-size: 26px; } }
+  .floor-container .notification-container {
+    position: relative;
+    z-index: 100; }
+    .floor-container .notification-container .notification-icon {
+      height: 32px;
+      width: auto; }
+    .floor-container .notification-container .notification-form-container {
+      -webkit-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.5);
+      -moz-box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.5);
+      box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.5);
+      position: absolute;
+      transition: all 250ms ease-in-out;
+      width: 100%; }
 
 .bathroom-container {
-  min-width: 250;
+  min-width: 150px;
   max-width: 50%;
   display: inline-block;
-  vertical-align: top;
   margin-right: 5%;
   text-align: center; }
-
-.space-container {
-  width: 120px;
-}
 
 .btn {
   margin-bottom: 5px; }
@@ -63,10 +48,16 @@
 .large-font {
   font-size: 27px; }
 
+@keyframes animate-toilet {
+  0% {
+    transform: scale(1);
+    -webkit-transform: scale(1); }
+  100% {
+    transform: scale(2);
+    -webkit-transform: scale(1.15); } }
 /* Standards and resets */
 html, body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
   height: 100%;
   margin: 0;
   min-height: 100%;
@@ -147,6 +138,62 @@ p {
       padding-left: 0.5rem;
       padding-right: 0.5rem; } }
 
-
+.floor-map {
+  position: relative;
+  height: 0;
+  width: 100%;
+  padding: 0;
+  padding-bottom: 50%;
+  transition: all 500ms ease-in-out; }
+  @media only screen and (max-width: 37.5em) {
+    .floor-map {
+      padding-bottom: 250%; } }
+  .floor-map #mensRoom {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    overflow: visible;
+    top: 25%;
+    transform-origin: top;
+    transform: rotate(90deg);
+    transition: all 500ms ease-in-out; }
+    .floor-map #mensRoom .floor-color,
+    .floor-map #mensRoom .sink-counter,
+    .floor-map #mensRoom .cls-3, .floor-map #mensRoom .cls-4 {
+      fill-rule: evenodd;
+      stroke: #333;
+      stroke-linejoin: round;
+      stroke-width: 5px; }
+    .floor-map #mensRoom .floor-color {
+      fill: #c5c8cf; }
+    .floor-map #mensRoom .sink-counter {
+      fill: #323f61; }
+    .floor-map #mensRoom .cls-3, .floor-map #mensRoom .cls-4 {
+      fill: #f3f3f4; }
+    .floor-map #mensRoom .stall {
+      outline: 0 none;
+      cursor: pointer;
+      transform-origin: 50% 50%;
+      transform: scale(1);
+      transition: all 250ms ease-in-out; }
+      .floor-map #mensRoom .stall .hidden {
+        display: none; }
+        .floor-map #mensRoom .stall .hidden + .toilet {
+          transform-origin: center center;
+          animation: animate-toilet 1s ease-in-out infinite alternate; }
+      .floor-map #mensRoom .stall .stall-open {
+        fill: #03AD2B; }
+      .floor-map #mensRoom .stall .stall-occupied {
+        fill: #a90329; }
+      .floor-map #mensRoom .stall .stall-occupied, .floor-map #mensRoom .stall .stall-open {
+        stroke: #333;
+        stroke-linejoin: round;
+        stroke-width: 5px;
+        fill-rule: evenodd; }
+    @media only screen and (max-width: 37.5em) {
+      .floor-map #mensRoom {
+        top: 0;
+        transform: rotate(0deg); } }
 
 /*# sourceMappingURL=master.css.map */
