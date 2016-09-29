@@ -47,7 +47,7 @@
   <link href="css/master.css" rel="stylesheet">
 </head>
 
-<body unresolved ng-app="mainView" ng-controller="mainViewCtrl">
+<body unresolved ng-app="mainView" ng-controller="mainViewCtrl" ng-cloak>
 
   <div class="navbar navbar-default">
     <div class="navbar-header">
@@ -55,12 +55,77 @@
     </div>
   </div>
 
-  <div class="floor-container" ng-repeat='(floorName, floor) in floors'>
-    <h2><strong>Floor {{floorName}}</strong></h2>
+  <div class="floor-container clearfix" ng-repeat='(floorName, floor) in floors'>
+
+    <h2><strong>Floor {{floorName}}</strong><span class="bathroom-name"> - Men</span></h2>
+    <div class="notification-container">
+      <a href="#" class="btn notification-button" ng-click="showInput = !showInput">
+        <img src="images/notification-icon.png" class="notification-icon">
+        <md-tooltip md-direction="right">
+          Notify Me!
+        </md-tooltip>
+      </a>
+
+      <md-content layout-padding ng-show="showInput" class="notification-form-container">
+        <form ng-submit="notifySubmit(floorName, bathroomName)" class="notification-form">
+          <!--<input name="notify.email" type="text" ng-model="notify.email" ng-blur="showInput = false" placeholder="email or phone" class="notification-input"/>
+          -->
+          <md-input-container class="md-block notification-input" flex-gt-sm ng-submit="notifySubmit(floorName, bathroomName)">
+            <label class="notification-input-label">Email or Phone</label>
+            <input name="notify.email" ng-model="notify.email"  ng-blur="showInput = false" class="notification-input">
+          </md-input-container>
+        </form>
+      </md-content>
+    </div>
+
+    <div class="map-container">
+      <div class="floor-map">
+        <svg id="mensRoom"
+             xmlns="http://www.w3.org/2000/svg"
+             xmlns:xlink="http://www.w3.org/1999/xlink"
+             preserveAspectRatio="xMidYMid meet"
+             viewBox="0 0 482 1207">
+
+          <!-- This is the floor -->
+          <path d="M232.000,1199.000 L11.000,1199.000 L11.000,11.000 L447.000,11.000 L447.000,352.000 L218.000,352.000 L218.000,376.111 L397.000,376.000 L397.000,605.000 L304.000,605.000 L304.000,642.000 L472.000,642.000 L472.000,921.000 L226.000,921.000 L226.000,937.000 L395.000,937.000 L395.000,1198.000 L364.000,1198.000 L270.000,1094.000 C270.000,1094.000 254.416,1101.258 241.000,1135.000 C227.325,1169.393 232.000,1199.000 232.000,1199.000 Z" class="floor-color"/>
+
+          <!-- This is the sink counter and 2 sinks -->
+          <g>
+            <path d="M380.000,921.000 L380.000,642.000 L472.000,642.000 L472.000,921.000 L380.000,921.000 Z" class="sink-counter"/>
+            <circle cx="422" cy="711.031" r="33" class="cls-3"/>
+            <ellipse cx="422" cy="851.969" rx="33" ry="33.031" class="cls-3"/>
+          </g>
+
+          <!-- These are the urinals -->
+          <g>
+            <path d="M397.000,583.000 L357.000,583.000 L357.000,561.000 C357.000,561.000 349.000,560.687 349.000,553.000 C349.000,545.313 357.000,545.000 357.000,545.000 L357.000,522.000 L397.000,522.000 L397.000,583.000 Z" class="cls-4"/>
+            <path d="M397.000,467.000 L357.000,467.000 L357.000,445.000 C357.000,445.000 349.000,444.687 349.000,437.000 C349.000,429.313 357.000,429.000 357.000,429.000 L357.000,406.000 L397.000,406.000 L397.000,467.000 Z" class="cls-4"/>
+          </g>
+
+          <!-- Stall 1 -->
+          <!-- The first path is the "occupied" path.
+          <!-- The middle path is a "open" path.
+          <!-- Toggle the 'hidden' class to see the difference. -->
+          <g class="stall" ng-click="stallClicked($event, 1)">
+            <path d="M227.000,352.000 L447.000,352.000 L447.000,231.000 L227.000,231.000 L227.000,352.000 Z" class="stall-occupied" ng-class="{'hidden': !floor.Men.spaces[0].occupied}"/>
+            <path d="M227.000,231.000 L447.000,231.000 L447.000,352.000 L227.000,352.000 L227.000,333.000 C227.000,333.000 262.648,327.914 286.000,303.000 C309.352,278.086 310.000,247.000 310.000,247.000 L227.000,247.000 L227.000,231.000 Z" class="stall-open" ng-class="{'hidden': floor.Men.spaces[0].occupied}"/>
+            <path d="M447.000,333.000 L416.000,333.000 L416.000,309.000 C416.000,309.000 402.010,324.000 380.000,324.000 C357.990,324.000 341.000,311.170 341.000,298.000 C341.000,284.830 357.990,272.000 380.000,272.000 C402.010,272.000 416.000,287.000 416.000,287.000 L416.000,263.000 L447.000,263.000 L447.000,333.000 Z" class="cls-4 toilet"/>
+          </g>
+
+          <!-- Stall 2 -->
+          <g class="stall" ng-click="stallClicked($event, 2)">
+            <path d="M227.000,11.000 L447.000,11.000 L447.000,231.000 L227.000,231.000 L227.000,11.000 Z" class="stall-occupied" ng-class="{'hidden': !floor.Men.spaces[1].occupied}"/>
+            <path d="M227.000,192.000 L227.000,231.000 L447.000,231.000 L447.000,11.000 L227.000,11.000 L227.000,52.431 L87.000,52.000 C87.000,52.000 87.784,108.784 128.000,149.000 C171.454,192.454 227.000,192.000 227.000,192.000 Z" class="stall-open" ng-class="{'hidden': floor.Men.spaces[1].occupied}"/>
+            <path d="M447.000,213.000 L416.000,213.000 L416.000,189.000 C416.000,189.000 402.010,204.000 380.000,204.000 C357.990,204.000 341.000,191.170 341.000,178.000 C341.000,164.830 357.990,152.000 380.000,152.000 C402.010,152.000 416.000,167.000 416.000,167.000 L416.000,143.000 L447.000,143.000 L447.000,213.000 Z" class="cls-4 toilet"/>
+          </g>
+        </svg>
+        <!--<div src="mens-bathroom-map.html"></div>-->
+      </div>
+    </div>
+
     <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
       <h3>{{bathroomName}}</h3>
       <div class="notification-container">
-
        <a href="#" class="btn notification-button" ng-click="showInput = !showInput">
         <img src="images/notification-icon.png" class="notification-icon">
         <md-tooltip md-direction="right">

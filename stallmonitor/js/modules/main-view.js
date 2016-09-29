@@ -41,5 +41,9 @@ mainView.controller('mainViewCtrl', ['$scope', '$firebaseObject', '$http', 'DB_U
 
             $http.post(notifyEndpoint, data);  
         };
+
+        $scope.stallClicked = function(event, stall) {
+            alert("Stall " + stall + " Clicked!");
+        };
     }
 ]);
