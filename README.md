@@ -1,7 +1,7 @@
 # Stall Monitor
 
 An IOT application to monitor the occupancy of the Men's restroom at work.
- 
+
 ## Getting Started
 
 ##### Clone and install
@@ -20,7 +20,7 @@ An IOT application to monitor the occupancy of the Men's restroom at work.
 
 `DB_URL=[URL of Firebase that the application will use]`
 
-##### Create config.js in `stallmonitor/js/modules` folder
+##### Create config.js in `webapp/js/modules` folder
 
 `angular.module('configuration', []).constant('DB_URL','[FIREBASE URL HERE]');`
 
