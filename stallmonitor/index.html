@@ -6,12 +6,12 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <meta name="theme-color" content="#4285f4">
-  <meta charset="utf-8">   
+  <meta charset="utf-8">
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="js/lib/jquery.js"> </script>
   <script src="js/lib/underscore.js"></script>
- 
+
   <!--bootstrap-->
   <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -58,37 +58,42 @@
   <div class="floor-container" ng-repeat='(floorName, floor) in floors'>
     <h2><strong>Floor {{floorName}}</strong></h2>
     <div ng-repeat='(bathroomName, bathroom) in floor' class="bathroom-container">
-      <h3>{{bathroomName}}</h3>
-      <div class="notification-container">
+      <div ng-if="!bathroom.meta">
 
-       <a href="#" class="btn notification-button" ng-click="showInput = !showInput">
-        <img src="images/notification-icon.png" class="notification-icon">
-        <md-tooltip md-direction="right">
-          Notify Me!
-        </md-tooltip>
-       </a> 
-        
-        <md-content layout-padding ng-show="showInput" class="notification-form-container">
-          <form ng-submit="notifySubmit(floorName, bathroomName)" class="notification-form">
-            <!--<input name="notify.email" type="text" ng-model="notify.email" ng-blur="showInput = false" placeholder="email or phone" class="notification-input"/>
-            -->
-            <md-input-container class="md-block notification-input" flex-gt-sm ng-submit="notifySubmit(floorName, bathroomName)">
-              <label class="notification-input-label">Email or Phone</label>
-              <input name="notify.email" ng-model="notify.email"  ng-blur="showInput = false" class="notification-input">
-            </md-input-container>
-          </form>
-        </md-content>
+        <h3>{{bathroomName}}</h3>
+        <div class="notification-container">
+
+         <a href="#" class="btn notification-button" ng-click="showInput = !showInput">
+          <img src="images/notification-icon.png" class="notification-icon">
+          <md-tooltip md-direction="right">
+            Notify Me!
+          </md-tooltip>
+         </a>
+
+          <md-content layout-padding ng-show="showInput" class="notification-form-container">
+            <form ng-submit="notifySubmit(floorName, bathroomName)" class="notification-form">
+              <!--<input name="notify.email" type="text" ng-model="notify.email" ng-blur="showInput = false" placeholder="email or phone" class="notification-input"/>
+              -->
+              <md-input-container class="md-block notification-input" flex-gt-sm ng-submit="notifySubmit(floorName, bathroomName)">
+                <label class="notification-input-label">Email or Phone</label>
+                <input name="notify.email" ng-model="notify.email"  ng-blur="showInput = false" class="notification-input">
+              </md-input-container>
+            </form>
+          </md-content>
+        </div>
+
+        <div ng-repeat='(stallName, stall) in bathroom.spaces'>
+          <a href="#"
+             ng-class="{'btn-primary': !stall.occupied && stall.active, 'btn-danger': stall.occupied && stall.active}"
+             class="btn btn-raised space-container">
+             <strong ng-if="stall.active">{{stallName}}</strong>
+             <strong ng-if="!stall.active">?</strong>
+             <img ng-if="stall.handicapped" src="images/handicapped-icon.png" class="handicapped-icon">
+          </a>
+        </div>
+
       </div>
 
-      <div ng-repeat='(stallName, stall) in bathroom.spaces'>
-        <a href="#"
-           ng-class="{'btn-primary': !stall.occupied && stall.active, 'btn-danger': stall.occupied && stall.active}"
-           class="btn btn-raised space-container">
-           <strong ng-if="stall.active">{{stallName}}</strong>
-           <strong ng-if="!stall.active">?</strong>
-           <img ng-if="stall.handicapped" src="images/handicapped-icon.png" class="handicapped-icon">
-        </a>
-      </div>
     </div>
   </div>
 
