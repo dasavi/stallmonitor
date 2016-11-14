@@ -14,7 +14,7 @@
   margin-left: 5%; }
 
 .notification-container {
-  max-height: 150px;    
+  max-height: 150px;
 }
 
 .notification-button{
@@ -27,21 +27,21 @@
 }
 
 .notification-icon {
-  height: 30px; 
+  height: 30px;
 }
 
 .handicapped-icon {
-  height: 20px; 
+  height: 20px;
   position: absolute;
   right: 5%;
 }
 
 .notification-form-container {
-  background-color: #EEEEEE;  
+  background-color: #EEEEEE;
 }
 .notification-form {
   width: 60%;
-  margin-left: 20%;     
+  margin-left: 20%;
   margin-top: 10px;
 }
 .notification-input-label {
@@ -57,9 +57,11 @@
   display: inline-block;
   vertical-align: top;
   margin-right: 5%;
-  text-align: center; }
+  text-align: center;
+  float: left;
+}
 
-.credits-container {    
+.credits-container {
   padding-left: 5%;
   padding-top: 20px;
 }
