@@ -10,7 +10,7 @@ var notifyController = require('./custom_modules/notifyController');
 
 /*----Configure Express------*/
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/stallmonitor'));
+app.use(express.static(__dirname + '/webapp'));
 app.use(bodyParser.json());
 
 /*------Start Server-------*/
@@ -19,8 +19,8 @@ app.listen(app.get('port'), function() {
 });
 
 /*--------Routes----------*/
-app.get('/stallmonitor', function(request, response) {
-	response.sendfile('stallmonitor/index.html');
+app.get('/webapp', function(request, response) {
+	response.sendfile('webapp/index.html');
 });
 
 app.get('/stalls', function(request, response) {
@@ -37,8 +37,8 @@ app.post('/stall', function(request, response) {
 		bathroom = requestBody.bathroom,
 		stallName = requestBody.stallName,
 		occupied = requestBody.occupied;
-	
-	if(!_.isString(floor) || !_.isString(bathroom) || 
+
+	if(!_.isString(floor) || !_.isString(bathroom) ||
 		!_.isString(stallName) || !_.isBoolean(occupied)) {
 		response.status(400);
 		response.send("Bad data, yo");
@@ -61,7 +61,7 @@ app.get('/stall', function(request, response) {
 		response.status(400);
 		response.send("Bad data, yo");
 	} else {
-		stallController.getStallStatus(floor, bathroom, stallName, callback);	
+		stallController.getStallStatus(floor, bathroom, stallName, callback);
 	}
 });
 
@@ -72,7 +72,7 @@ app.post('/notify', function(request, response) {
 	var floor = requestBody.floor,
 		bathroom = requestBody.bathroom,
 		email = requestBody.email;
-	
+
 	if(!_.isString(floor) || !_.isString(bathroom) || !_.isString(email)) {
 		response.status(400);
 		response.send("Bad data, yo");
